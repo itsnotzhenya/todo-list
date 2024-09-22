@@ -16,6 +16,7 @@ export const AddTodo = () => {
   return (
     <form onSubmit={onAddTodo} className={commonStyles.form}>
       <input
+        className={commonStyles.addInput}
         required
         type="text"
         name="description"

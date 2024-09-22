@@ -12,8 +12,10 @@ interface TodosState {
   filter: Filter;
 }
 
+const todosFromStorage = localStorage.getItem('todos');
+
 const initialState: TodosState = {
-  todos: [],
+  todos: todosFromStorage ? JSON.parse(todosFromStorage) : [],
   filter: 'all',
 };
 
@@ -43,20 +45,17 @@ export const todoSlice = createSlice({
       state: TodosState,
       action: PayloadAction<{ id: number; description: string }>
     ) => {
-      const todo = state.todos.find((todo) => todo.id === action.payload.id);
       const todoIndex = state.todos.findIndex(
         (todo) => todo.id === action.payload.id
       );
-      // state.todos[todoIndex] = action.payload.description;
-      if (todo) {
+      if (todoIndex !== -1) {
         state.todos[todoIndex] = {
-          id: action.payload.id,
-          completed: todo?.completed,
+          ...state.todos[todoIndex],
           description: action.payload.description,
         };
       }
     },
-    setFilter: (state: TodosState, action) => {
+    setFilter: (state: TodosState, action: PayloadAction<Filter>) => {
       state.filter = action.payload;
     },
   },

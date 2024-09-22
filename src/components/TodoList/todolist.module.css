@@ -2,15 +2,11 @@
   display: flex;
   flex-direction: column;
   row-gap: 8px;
+  margin-top: 25px;
 }
-.filters {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  justify-content: space-evenly;
+.select {
+  padding: 5px;
 }
-.filterButton {
-  background-color: #383838;
-}
-.active {
-  border: 2px solid #fff;
+.notFound {
+  text-align: center;
 }
