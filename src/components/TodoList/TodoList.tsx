@@ -1,7 +1,7 @@
-import { deleteTodo, toggleTodo } from '../../app/todoSlice';
+import { deleteTodo, editTodo, toggleTodo } from '../../app/todoSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../../app/store';
-import { Todo } from './Todo';
-import styles from './todos.module.css';
+import { Todo } from '../Todo/Todo';
+import styles from './todolist.module.css';
 
 export const TodoList = () => {
   const todos = useAppSelector((state: RootState) => state.todos);
@@ -15,6 +15,10 @@ export const TodoList = () => {
     dispatch(deleteTodo(id));
   };
 
+  const onEditTodo = (id: number, description: string) => {
+    dispatch(editTodo({ id, description }));
+  };
+
   return (
     <div className={styles.list}>
       {todos &&
@@ -24,6 +28,7 @@ export const TodoList = () => {
             todo={todo}
             onCheck={onCheckTodo}
             onDelete={onDeleteTodo}
+            onEdit={onEditTodo}
           />
         ))}
     </div>

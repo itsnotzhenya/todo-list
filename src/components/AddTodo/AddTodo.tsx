@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addTodo } from '../../app/todoSlice';
 import { useAppDispatch } from '../../app/store';
-import styles from './todos.module.css';
+import commonStyles from '../../styles/common.module.css';
 
 export const AddTodo = () => {
   const [description, setDescription] = useState<string>('');
@@ -14,7 +14,7 @@ export const AddTodo = () => {
   };
 
   return (
-    <form onSubmit={onAddTodo} className={styles.form}>
+    <form onSubmit={onAddTodo} className={commonStyles.form}>
       <input
         required
         type="text"
@@ -23,7 +23,9 @@ export const AddTodo = () => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button type="submit">Add Todo</button>
+      <button type="submit" className={commonStyles.blueButton}>
+        Add Todo
+      </button>
     </form>
   );
 };

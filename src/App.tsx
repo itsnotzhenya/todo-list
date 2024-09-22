@@ -1,6 +1,6 @@
-import { TodoList } from './features/todos/TodoList';
-import { AddTodo } from './features/todos/AddTodo';
-import './App.css';
+import { TodoList } from './components/TodoList/TodoList';
+import { AddTodo } from './components/AddTodo/AddTodo';
+import './styles/App.css';
 
 function App() {
   return (
