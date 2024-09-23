@@ -8,16 +8,13 @@
   filter: drop-shadow(0 0 4px var(--button-color));
   border-color: var(--button-color);
 }
-.blueButton {
-  composes: button;
-  --button-color: var(--bg-blue);
-  background-color: var(--bg-blue);
-}
+
 .redButton {
   composes: button;
   --button-color: var(--bg-red);
   background-color: var(--bg-red);
 }
+
 .greenButton {
   composes: button;
   --button-color: var(--bg-green);
@@ -47,8 +44,5 @@
   .form {
     flex-direction: row;
     column-gap: 10px;
-  }
-  .form .addInput {
-    min-width: 200px;
   }
 }

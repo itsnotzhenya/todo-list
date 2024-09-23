@@ -66,8 +66,8 @@ export const { addTodo, deleteTodo, toggleTodo, editTodo, setFilter } =
 export const selectFilteredTodos = createSelector(
   (state) => state.todos,
   (state) => state.filter,
-  (todos, filter) => {
-    return todos.filter((todo: TodoType) => {
+  (todos: TodoType[], filter: Filter) => {
+    return todos.filter((todo) => {
       const matches =
         filter === 'all' ||
         (filter === 'active' && !todo.completed) ||

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../app/store';
 import { editTodo } from '../../app/todoSlice';
-import commonStyles from '../../styles/common.module.css';
+import styles from './editTodo.module.css';
 
 export const EditTodo = ({
   todoId,
@@ -26,8 +26,8 @@ export const EditTodo = ({
   };
 
   return (
-    <form onSubmit={onEditTodo} className={commonStyles.form}>
-      <div className={commonStyles.wrapper}>
+    <form onSubmit={onEditTodo} className={styles.form}>
+      <div className={styles.wrapper}>
         <input
           type="checkbox"
           checked={completed}
@@ -41,11 +41,11 @@ export const EditTodo = ({
           onChange={(e) => setEditingDescription(e.target.value)}
         />
       </div>
-      <div className={commonStyles.wrapper}>
-        <button className={commonStyles.greenButton} type="submit">
+      <div className={styles.wrapper}>
+        <button className={styles.greenButton} type="submit">
           Ok
         </button>
-        <button className={commonStyles.redButton} onClick={stopEditing}>
+        <button className={styles.redButton} onClick={stopEditing}>
           Cancel
         </button>
       </div>

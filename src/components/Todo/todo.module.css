@@ -1,3 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 5px;
+}
+.completed {
+  text-decoration: line-through;
+}
 .todo {
   display: flex;
   flex-direction: column;
@@ -5,7 +14,13 @@
   row-gap: 10px;
   border-radius: 5px;
   padding: 10px;
-  background-color: #383838;
+  background-color: var(--bg-gray-dark);
+}
+
+@media (prefers-color-scheme: light) {
+  .todo {
+    background-color: var(--bg-gray-light);
+  }
 }
 
 @media (min-width: 425px) {
@@ -16,6 +31,25 @@
   }
 }
 
-.completed {
-  text-decoration: line-through;
+.button {
+  color: #fff;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: filter 0.3s, border-color 0.3s;
 }
+.button:hover {
+  filter: drop-shadow(0 0 4px var(--button-color));
+  border-color: var(--button-color);
+}
+.blueButton {
+  composes: button;
+  --button-color: var(--bg-blue);
+  background-color: var(--bg-blue);
+}
+.redButton {
+  composes: button;
+  --button-color: var(--bg-red);
+  background-color: var(--bg-red);
+}
+
+

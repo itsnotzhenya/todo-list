@@ -1,6 +1,6 @@
+import { useCallback } from 'react';
 import {
   deleteTodo,
-  editTodo,
   toggleTodo,
   setFilter,
   selectFilteredTodos,
@@ -18,17 +18,19 @@ export const TodoList = () => {
     selectFilteredTodos(state)
   );
 
-  const onCheckTodo = (id: number) => {
-    dispatch(toggleTodo(id));
-  };
+  const onCheckTodo = useCallback(
+    (id: number) => {
+      dispatch(toggleTodo(id));
+    },
+    [dispatch]
+  );
 
-  const onDeleteTodo = (id: number) => {
-    dispatch(deleteTodo(id));
-  };
-
-  const onEditTodo = (id: number, description: string) => {
-    dispatch(editTodo({ id, description }));
-  };
+  const onDeleteTodo = useCallback(
+    (id: number) => {
+      dispatch(deleteTodo(id));
+    },
+    [dispatch]
+  );
 
   const onFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setFilter(e.currentTarget.value as Filter));
@@ -48,10 +50,11 @@ export const TodoList = () => {
         filteredTodos.map((todo: TodoType) => (
           <Todo
             key={todo.id}
-            todo={todo}
+            todoId={todo.id}
+            description={todo.description}
+            completed={todo.completed}
             onCheck={onCheckTodo}
             onDelete={onDeleteTodo}
-            onEdit={onEditTodo}
           />
         ))
       ) : (

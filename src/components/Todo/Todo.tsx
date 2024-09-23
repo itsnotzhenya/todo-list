@@ -1,19 +1,20 @@
 import { memo, useState } from 'react';
 import { EditTodo } from '../EditTodo/EditTodo';
-import { type TodoType } from '../../app/todoSlice';
 import styles from './todo.module.css';
-import commonStyles from '../../styles/common.module.css';
 
 export const Todo = memo(
   ({
-    todo,
+    todoId,
+    description,
+    completed,
     onCheck,
     onDelete,
   }: {
-    todo: TodoType;
+    todoId: number;
+    description: string;
+    completed: boolean;
     onCheck: (id: number) => void;
     onDelete: (id: number) => void;
-    onEdit: (id: number, description: string) => void;
   }) => {
     const [editingId, setEditingId] = useState(0);
 
@@ -25,33 +26,33 @@ export const Todo = memo(
       <div className={styles.todo}>
         {editingId ? (
           <EditTodo
-            todoId={todo.id}
-            description={todo.description}
+            todoId={todoId}
+            description={description}
             stopEditing={onCancel}
-            completed={todo.completed}
+            completed={completed}
             onCheck={onCheck}
           />
         ) : (
           <>
-            <div className={commonStyles.wrapper}>
+            <div className={styles.wrapper}>
               <input
                 type="checkbox"
-                checked={todo.completed}
-                onChange={() => onCheck(todo.id)}
+                checked={completed}
+                onChange={() => onCheck(todoId)}
               />
-              <p className={todo.completed ? styles.completed : undefined}>
-                {todo.description}
+              <p className={completed ? styles.completed : undefined}>
+                {description}
               </p>
             </div>
-            <div className={commonStyles.wrapper}>
+            <div className={styles.wrapper}>
               <button
-                className={commonStyles.blueButton}
-                onClick={() => setEditingId(todo.id)}>
+                className={styles.blueButton}
+                onClick={() => setEditingId(todoId)}>
                 Edit
               </button>
               <button
-                onClick={() => onDelete(todo.id)}
-                className={commonStyles.redButton}>
+                onClick={() => onDelete(todoId)}
+                className={styles.redButton}>
                 Delete
               </button>
             </div>
