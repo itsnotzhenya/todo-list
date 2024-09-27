@@ -1,13 +1,18 @@
 import { configureStore, Middleware } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
+import debounce from 'lodash.debounce';
 import todosReducer from './todoSlice';
+
+const debouncedSaveToLocalStorage = debounce((todos) => {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}, 800);
 
 const localeStorageMiddleware: Middleware =
   (storeAPI) => (next) => (action) => {
     const result = next(action);
-    const state = storeAPI.getState();
+    const state: RootState = storeAPI.getState();
 
-    localStorage.setItem('todos', JSON.stringify(state.todos));
+    debouncedSaveToLocalStorage(state.todos);
 
     return result;
   };

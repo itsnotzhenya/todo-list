@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { addTodo } from '../../app/todoSlice';
-import { useAppDispatch } from '../../app/store';
+import { addTodo } from '../../store/todoSlice';
+import { useAppDispatch } from '../../store/store';
 import styles from './addTodo.module.css';
 
 export const AddTodo = () => {
@@ -24,7 +24,6 @@ export const AddTodo = () => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-
       <button type="submit" className={styles.button}>
         Add Todo
       </button>

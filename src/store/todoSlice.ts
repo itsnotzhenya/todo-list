@@ -1,16 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export interface TodoType {
-  description: string;
-  completed: boolean;
-  id: number;
-}
-export type Filter = 'all' | 'active' | 'completed';
-interface TodosState {
-  todos: Array<TodoType>;
-  filter: Filter;
-}
+import type { TodoType, Filter, TodosState } from '../types';
 
 const todosFromStorage = localStorage.getItem('todos');
 
@@ -58,11 +48,21 @@ export const todoSlice = createSlice({
     setFilter: (state: TodosState, action: PayloadAction<Filter>) => {
       state.filter = action.payload;
     },
+    sortList: (state: TodosState, action: PayloadAction<TodoType[]>) => {
+      const newState = action.payload.filter((todo) => todo !== null);
+      state.todos = newState;
+    },
   },
 });
 
-export const { addTodo, deleteTodo, toggleTodo, editTodo, setFilter } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  deleteTodo,
+  toggleTodo,
+  editTodo,
+  setFilter,
+  sortList,
+} = todoSlice.actions;
 export const selectFilteredTodos = createSelector(
   (state) => state.todos,
   (state) => state.filter,

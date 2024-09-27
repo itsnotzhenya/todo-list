@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../app/store';
-import { editTodo } from '../../app/todoSlice';
+import { useAppDispatch } from '../../store/store';
+import { editTodo } from '../../store/todoSlice';
 import styles from './editTodo.module.css';
 
 export const EditTodo = ({
